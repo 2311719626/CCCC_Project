@@ -33,3 +33,26 @@ Development Tools: VSCode + Git
 Cloud Platform: Aliyun
 
 ```
+
+## Timeline
+
+```mermaid
+timeline
+    title Project Timeline
+    section Organizing
+        2024-05 ~ 2024-09:
+        2024-05-31<br>Meet with Supervisor:
+        2024-07-31<br>Team Completion:
+        2024-09-03<br>First Meeting:
+        2024-09-26<br>Online Meeting with Supervisor
+    section 选题
+        2024-09 ~ 2024-11:
+        2024-09-30<br>Initial Topic Selection:
+        2024-10-08 ~<br> 2024-10-24<br>Idea Collection:
+        2024-10-25<br>Topic Discussion:
+        2024-10-28<br>Topic Revision by Supervisor
+    section 项目构建
+        2024-11 ~ 2025<br>:
+        2024-11-14<br>Page Design Discussion:
+        2024-12-01<br>Create GitHub Repository
+```
