@@ -1,14 +1,14 @@
-# China's Charm of Mountains and Water
+# 山水韵中国
 
-> English | [简体中文](README_CN-zh.md)
+> [English](./README.md) | 简体中文
 
-## Introduction
+## 介绍
 
-This is a project for the 2025 Chinese Collegiate Computing Competition.
+这是 CCCC-2025 的参赛项目。
 
-> **Official Website** of CCCC : [Link](https://jsjds.blcu.edu.cn/index.htm)
+> 中国大学生计算机设计大赛 **官网**：[链接](https://jsjds.blcu.edu.cn/index.htm)
 
-### Technology Stack
+### 技术栈
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
@@ -20,16 +20,15 @@ This is a project for the 2025 Chinese Collegiate Computing Competition.
 ![Aliyun](https://img.shields.io/badge/Aliyun-FF6A00?style=for-the-badge&logo=aliyun&logoColor=white)
 
 ```
-Frontend: React
+前端：React
 
-Backend: Node.js + Express
+后端：Node.js + Express
 
-Database: MongoDB
+数据库：MongoDB
 
-Operating System: Linux
+操作系统：Linux
 
-Development Tools: VSCode + Git
+开发工具：VSCode + Git
 
-Cloud Platform: Aliyun
-
+云服务平台：Aliyun
 ```
