@@ -1,4 +1,4 @@
-# China's Charm of Mountains and Water
+<h1  align="center">China's Charm of Mountains ⛰️ and Water 💧</h1>
 
 > English | [简体中文](README_CN-zh.md)
 
@@ -8,7 +8,7 @@ This is a project for the 2025 Chinese Collegiate Computing Competition.
 
 > **Official Website** of CCCC : [Link](https://jsjds.blcu.edu.cn/index.htm)
 
-### Technology Stack
+## Technology Stack
 
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -56,3 +56,9 @@ timeline
         2024-11-14<br>Page Design Discussion:
         2024-12-01<br>Create GitHub Repository
 ```
+
+## Anouncement
+
+The Project uses the `Apache 2.0` Open Source License.
+
+Under the premise of complying with the open source agreement, this code can be used in various scenarios, but it must not be copied as a personal work for participation in competitions.
