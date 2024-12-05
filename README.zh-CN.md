@@ -1,4 +1,4 @@
-# 山水韵中国
+<h1 align="center">⛰️💧 山水韵中国</h1>
 
 > [English](./README.md) | 简体中文
 
@@ -8,7 +8,7 @@
 
 > 中国大学生计算机设计大赛 **官网**：[链接](https://jsjds.blcu.edu.cn/index.htm)
 
-### 技术栈
+## 技术栈
 
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -55,3 +55,9 @@ timeline
         2024-11-14<br>页面设计讨论:
         2024-12-01<br>创建 GitHub 仓库
 ```
+
+## 声明
+
+本项目使用 Apache 2.0 开源协议
+
+在遵守开源协议的基础下，可以在各种场景下使用此代码，但是不得复制此代码作文个人作品参与比赛。
