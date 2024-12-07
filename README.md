@@ -1,6 +1,6 @@
 <h1  align="center">China's Charm of Mountains ⛰️ and Water 💧</h1>
 
-> English | [简体中文](README_zh-CN.md)
+> English | [简体中文](README.zh-CN.md)
 
 ## Introduction
 
