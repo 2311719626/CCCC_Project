@@ -2,6 +2,8 @@
 
 > English | [简体中文](README.zh-CN.md)
 
+> [PRD](https://github.com/2311719626/CCCC_Project/blob/main/Other/%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3.pdf)
+
 ## Introduction
 
 This is a project for the 2025 Chinese Collegiate Computing Competition.
