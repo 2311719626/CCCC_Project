@@ -2,6 +2,8 @@
 
 > [English](./README.md) | 简体中文
 
+> [需求文档](https://github.com/2311719626/CCCC_Project/blob/main/Other/%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3.pdf)
+
 ## 介绍
 
 这是 CCCC-2025 的参赛项目。
