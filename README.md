@@ -2,7 +2,7 @@
 
 [![CCCC_Project](https://img.shields.io/badge/GitHub-CCCC__Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/2311719626/CCCC_Project)
 
-> English | [简体中文](README.zh-CN.md)
+> English | [简体中文](/Other/README.zh-CN.md)
 
 ## Introduction
 
