@@ -4,7 +4,7 @@
 
 const usersService = require('../services/users.service.js')
 
-//用户注册控制
+// 用户注册控制
 const usersRegister = async (req,res)=>{
     try {
         console.log("用户注册: " + JSON.stringify(req.body))
@@ -21,11 +21,13 @@ const usersRegister = async (req,res)=>{
             })
         }
     } catch (err) {
-        res.status(500).json({
-            msg: err,
-            data: {}
-        })
+        console.log(err)
     }
+}
+
+// 用户登录控制
+const usersLogin = async (req,res)=>{
+
 }
 
 module.exports = {
