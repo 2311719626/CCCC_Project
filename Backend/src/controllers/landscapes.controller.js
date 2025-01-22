@@ -1,3 +1,7 @@
+/**
+ * 山水控制器
+ */
+
 const landscapeService = require("../services/landscapes.service");
 const ResponseUtil = require("../utils/response.util");
 

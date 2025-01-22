@@ -1,3 +1,7 @@
+/**
+ * 山水路由
+ */
+
 const express = require("express");
 const router = express.Router();
 const landscapesController = require("../controllers/landscapes.controller");

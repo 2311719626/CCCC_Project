@@ -1,3 +1,7 @@
+/**
+ * 山水服务
+ */
+
 const db = require("../models");
 const Landscape = db.landscape;
 const { Op } = require("sequelize");

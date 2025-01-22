@@ -1,3 +1,7 @@
+/**
+ * 用户收藏模型
+ */
+
 module.exports = (sequelize, Sequelize) => {
   const UserFavorite = sequelize.define(
     "user_favorite",

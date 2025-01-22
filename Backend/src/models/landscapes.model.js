@@ -1,3 +1,6 @@
+/**
+ * 山水模型
+ */
 module.exports = (sequelize, Sequelize) => {
   const Landscape = sequelize.define(
     "landscape",
