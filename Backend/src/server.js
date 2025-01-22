@@ -12,6 +12,6 @@ app.listen(process.env.PORT,process.env.IP,()=>{
     // 连接数据库
     mongodbConnection()
     // 连接redis
-    redisConnection()
+    //redisConnection()
     console.log("Server start at http://127.0.0.1:" + process.env.PORT)
 })
