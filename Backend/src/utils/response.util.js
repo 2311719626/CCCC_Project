@@ -1,17 +1,17 @@
 class ResponseUtil {
-  static success(data = null, msg = "成功") {
+  static success(data = null, msg = "操作成功") {
     return {
       status: 200,
-      msg,
-      data,
+      msg: msg,
+      data: data,
     };
   }
 
-  static error(status = 500, msg = "服务器错误", data = null) {
+  static error(status = 500, msg = "操作失败", data = null) {
     return {
-      status,
-      msg,
-      data,
+      status: status,
+      msg: msg,
+      data: data,
     };
   }
 }
