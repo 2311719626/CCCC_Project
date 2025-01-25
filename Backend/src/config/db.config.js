@@ -2,7 +2,7 @@
  * mongo数据库相关配置和方法
  */
 
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 /**
  * 连接mongoDB
@@ -10,10 +10,10 @@ const mongoose = require("mongoose");
  */
 async function mongodbConnection() {
   try {
-    await mongoose.connect(process.env.DB);
-    console.log("mongoDB connected...");
+    await mongoose.connect(process.env.DB)
+    console.log("mongoDB connected...")
   } catch (err) {
-    console.error("mongoDB error:", err);
+    console.error("mongoDB error:", err)
   }
 }
 
@@ -21,5 +21,5 @@ async function mongodbConnection() {
  * 导出连接函数
  */
 module.exports = {
-  mongodbConnection,
-};
+  mongodbConnection
+}

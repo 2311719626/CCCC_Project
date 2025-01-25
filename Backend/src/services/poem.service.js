@@ -10,7 +10,7 @@ class PoemService {
    * @returns {Promise<Array>} 返回古诗词数组，包含id、标题、内容、作者和朝代信息
    */
   async getPoems() {
-    const poems = await Poem.find({}, "title content author dynasty");
+    const poems = await Poem.find({}, "title content author dynasty");s
     return poems;
   }
 }

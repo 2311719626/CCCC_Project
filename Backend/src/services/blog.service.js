@@ -1,6 +1,7 @@
 const { Blog } = require("../models/blogs.model");
 const { Landscape } = require("../models/landscapes.model");
 
+
 /**
  * 游记服务类
  * 处理与游记相关的业务逻辑
@@ -116,7 +117,6 @@ class BlogService {
       error.name = "NotFoundError";
       throw error;
     }
-
     await blog.deleteOne();
     return { blog_id: blogId };
   }

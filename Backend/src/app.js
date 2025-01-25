@@ -5,11 +5,7 @@
 /* 导入 */
 const express = require("express");
 const env = require("dotenv");
-const {
-  jwtVerify,
-  jwtHandle,
-  userContext,
-} = require("./middlewares/jwt.middleware");
+const jwtConfig = require('./config/jwt.config.js'); 
 // 导入路由
 const usersRouter = require("./routes/users.route.js");
 const blogsRouter = require("./routes/blog.route");
@@ -31,17 +27,17 @@ app.use(
   })
 );
 // jwt相关验证
-app.use(jwtVerify);
-app.use(jwtHandle);
-app.use(userContext);
-// 全局异常处理
-app.use(handle.globalErrorHandle);
+app.use(jwtConfig.jwtVerify)
+app.use(jwtConfig.jwtHandle)
 
 // 加载路由
-app.use("/api/v1/users", usersRouter);
-app.use("/api/v1/blogs", blogsRouter);
+app.use('/api/v1/users',usersRouter)
+app.use('/api/v1/blogs',blogsRouter)
 app.use("/api/v1/poems", poemsRouter);
 app.use("/api/v1/landscapes", landscapesRouter);
+
+// 全局异常处理
+app.use(handle.globalErrorHandle)
 
 /* 导出 */
 module.exports = {
