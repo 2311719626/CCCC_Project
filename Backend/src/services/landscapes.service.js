@@ -2,14 +2,13 @@
  * 山水服务
  */
 
-const db = require("../models");
-const Landscape = db.landscape;
-const { Op } = require("sequelize");
+const { Landscape } = require("../models/landscapes.model");
+const { UserFavorite } = require("../models/userFavorites.model");
 
 class LandscapeService {
   // 通用方法：根据ID查找山水,不存在则抛出异常
   async findLandscapeOrThrow(id) {
-    const landscape = await Landscape.findByPk(id);
+    const landscape = await Landscape.findById(id);
     if (!landscape) {
       const error = new Error("山水不存在");
       error.name = "NotFoundError";
@@ -23,25 +22,24 @@ class LandscapeService {
     const { page = 1, per_page = 10, keyword, category } = query;
 
     // 构建查询条件
-    const where = {};
+    const filter = {};
     if (keyword) {
-      where.name = { [Op.like]: `%${keyword}%` };
+      filter.name = { $regex: keyword, $options: "i" };
     }
     if (category) {
-      where.category = category;
+      filter.category = category;
     }
 
     // 执行分页查询
-    const landscapes = await Landscape.findAndCountAll({
-      where,
-      offset: (page - 1) * per_page,
-      limit: per_page,
-    });
+    const total = await Landscape.countDocuments(filter);
+    const items = await Landscape.find(filter)
+      .skip((page - 1) * per_page)
+      .limit(parseInt(per_page));
 
     // 返回分页结果
     return {
-      total: landscapes.count,
-      items: landscapes.rows,
+      total,
+      items,
       page: parseInt(page),
       per_page: parseInt(per_page),
     };
@@ -54,11 +52,7 @@ class LandscapeService {
 
   // 获取所有分类列表
   async getCategories() {
-    const categories = await Landscape.findAll({
-      attributes: ["category"],
-      group: ["category"],
-    });
-    return categories.map((c) => c.category);
+    return await Landscape.distinct("category");
   }
 
   // 收藏指定山水
@@ -67,7 +61,7 @@ class LandscapeService {
     await this.findLandscapeOrThrow(landscapeId);
 
     // 创建收藏记录
-    await db.userFavorite.create({
+    await UserFavorite.create({
       user_id: userId,
       landscape_id: landscapeId,
     });
@@ -77,11 +71,9 @@ class LandscapeService {
 
   // 取消收藏
   async unfavorLandscape(userId, landscapeId) {
-    await db.userFavorite.destroy({
-      where: {
-        user_id: userId,
-        landscape_id: landscapeId,
-      },
+    await UserFavorite.deleteOne({
+      user_id: userId,
+      landscape_id: landscapeId,
     });
 
     return { landscape_id: landscapeId };

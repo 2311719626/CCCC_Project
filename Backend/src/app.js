@@ -3,10 +3,13 @@
  */
 
 /* 导入 */
-// 导入工具依赖
 const express = require("express");
 const env = require("dotenv");
-const jwtConfig = require("./config/jwt.config.js");
+const {
+  jwtVerify,
+  jwtHandle,
+  userContext,
+} = require("./middlewares/jwt.middleware");
 // 导入路由
 const usersRouter = require("./routes/users.route.js");
 const blogsRouter = require("./routes/blog.route");
@@ -28,15 +31,9 @@ app.use(
   })
 );
 // jwt相关验证
-app.use(jwtConfig.jwtVerify);
-app.use(jwtConfig.jwtHandle);
-app.use(function (req, res, next) {
-  if (req.auth) {
-    // 获取当前登录用户信息
-    app.locals.currentUser = req.auth;
-  }
-  next();
-});
+app.use(jwtVerify);
+app.use(jwtHandle);
+app.use(userContext);
 // 全局异常处理
 app.use(handle.globalErrorHandle);
 
