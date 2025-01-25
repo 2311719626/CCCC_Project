@@ -3,8 +3,8 @@
  */
 
 const {User} = require('../models/users.model.js')
-const {Favorite} = require('../models/favorites.model.js')
 const {Blog} = require('../models/blogs.model.js')
+const {userFavorites} = require('../models/userFavorites.model.js')
 const handle = require('../handles/global.handle.js')
 
 /* 用户注册服务 */
@@ -123,7 +123,7 @@ exports.userFavorites = async (currentuser)=>{
             email: currentuser.email
         })
         const favorites_list = favorites_origin.map(async (favorite_id)=>{
-            const favorite = await Favorite.findById(favorite_id)
+            const favorite = await userFavorites.findById(favorite_id)
             return {
                 user_id: favorite.user_id,
                 landscape: favorite.landscape_id,
