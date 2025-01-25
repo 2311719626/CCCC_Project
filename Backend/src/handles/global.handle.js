@@ -32,7 +32,7 @@ class AppError extends Error {
 
 // 全局异常处理
 const globalErrorHandle = (err, req, res, next) => {
-  if (err instanceof AppError) {
+  if (err instanceof AppError || err instanceof Error) {
     // 使用抛出异常时的信息和状态码
     res.status(err.status).json({
       msg: err.message,
