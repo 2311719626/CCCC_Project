@@ -52,7 +52,7 @@ logger.exceptions.handle(
 
 //处理promise
 logger.rejections.handle(
-    new winston.transports.Console(),
+    new winston.transports.Console({format: winston.format.json()}),
     new winston.transports.File({filename: path.join(__dirname,'..','..','logs','rejections.log')})
 )
 

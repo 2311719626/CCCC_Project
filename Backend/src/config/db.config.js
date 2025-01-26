@@ -3,6 +3,7 @@
  */
 
 const mongoose = require("mongoose")
+const {logger} = require('../utils/log.util.js')
 
 /**
  * 连接mongoDB
@@ -11,9 +12,9 @@ const mongoose = require("mongoose")
 async function mongodbConnection() {
   try {
     await mongoose.connect(process.env.DB)
-    console.log("mongoDB connected...")
+    logger.info("MongoDB: the connection is successful")
   } catch (err) {
-    console.error("mongoDB error:", err)
+    logger.error("MongoDB:",err)
   }
 }
 

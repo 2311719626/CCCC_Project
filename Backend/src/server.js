@@ -13,6 +13,6 @@ app.listen(process.env.PORT,process.env.IP,()=>{
     // 连接数据库
     mongodbConnection()
     // 连接redis
-    //redisConnection()
-    logger.info("Server start at http://"+process.env.IP+":"+process.env.PORT)
+    redisConnection()
+    logger.info("Server: http://"+process.env.IP+":"+process.env.PORT)
 })

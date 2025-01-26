@@ -2,6 +2,7 @@
  * jwt token验证相关配置
  */
 const {expressjwt: expressJwt} = require('express-jwt')
+const {logger} = require('../utils/log.util.js')
 const JWT_SECRET_KEY='wust_cccc_2025'
 
 // jwt token 验证
@@ -26,7 +27,7 @@ const jwtVerify = expressJwt({
 // jwt验证失败处理
 const jwtHandle = (err,req,res,next)=>{
     if(err.name === 'UnauthorizedError'){
-        console.log(err)
+        logger.error("jsonwebtoken:",err)
         res.status(401).send({
             msg: '无效token',
             data: {}
