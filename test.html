@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面设计</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .all{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    display: flex;
+   background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.text-container {
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    height: 100%;
+}
+
+.poetry {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.enter-button {
+    align-self: center;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.enter-button:hover {
+    background-color: #16a085;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 左侧的图片区域 -->
+        <div class="image-container">
+            <img src="illustration.png" alt="Illustration" class="image">
+        </div>
+
+        <!-- 右侧的文本区域 -->
+        <div class="text-container">
+            <div class="poetry">
+                <h2>诗词展示</h2>
+                <p>小舟从此逝，江海寄余生。</p>
+                <footer>—— 苏轼《临江仙·夜饮东坡醒复醉》</footer>
+            </div>
+            <button class="enter-button">进入</button>
+        </div>
+    </div>
+</body>
+
+</html>
