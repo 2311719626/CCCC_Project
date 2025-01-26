@@ -5,11 +5,12 @@
 const handle = require('../handles/global.handle.js')
 const usersService = require('../services/users.service.js')
 const jwt = require('jsonwebtoken')
+const {logger} = require('../utils/log.util.js')
 
 /* 用户注册控制 */
 const usersRegister = async (req,res,next)=>{
     try {
-        console.log("用户注册: " + JSON.stringify(req.body))
+        logger.info('用户注册: '+JSON.stringify(req.body))
         const {username,password,email} = req.body
         const result =await usersService.usersRegister({
             username: username,
@@ -30,7 +31,7 @@ const usersRegister = async (req,res,next)=>{
 /* 用户登录控制 */
 const usersLogin = async (req,res,next)=>{
     try {
-        console.log("用户登录: "+ JSON.stringify(req.body))
+        logger.info('用户登录: '+JSON.stringify(req.body))
         const {username,password} = req.body
         const result = await usersService.usersLogin({
             username: username,
@@ -63,7 +64,7 @@ const usersLogin = async (req,res,next)=>{
 /* 获取用户信息 */
 const userInfo = async (req,res,next)=>{
     try{
-        console.log("用户负载信息: "+ JSON.stringify(req.auth))
+        logger.info('用户负载信息: '+JSON.stringify(req.auth))
         const {username,email} = req.auth
         const result = await usersService.userInfo({
             username: username,
@@ -83,7 +84,7 @@ const userInfo = async (req,res,next)=>{
 /* 更新用户信息 */
 const userInfoUpdate = async (req,res,next)=>{
     try {
-        console.log("用户更新信息: "+ JSON.stringify(req.body))
+        logger.info('用户信息更新: '+JSON.stringify(req.body))
         const updateinfo = {
             oldname: req.auth.username,
             oldemail: req.auth.email,
@@ -107,7 +108,7 @@ const userInfoUpdate = async (req,res,next)=>{
 /* 修改用户密码 */
 const userUpdatePassword = async (req,res,next)=>{
     try {
-        console.log("修改用户密码:"+ JSON.stringify(req.body))
+        logger.info('用户密码修改: '+JSON.stringify(req.body))
         const updatepassword = {
             old_password: req.body.old_password,
             new_password: req.body.new_password
@@ -133,7 +134,7 @@ const userUpdatePassword = async (req,res,next)=>{
 //获取用户收藏列表
 const userFavorites = async (req,res,next)=>{
     try {
-        console.log("获取当前用户收藏列表: "+ JSON.stringify(req.auth))
+        logger.info('用户收藏列表: '+JSON.stringify(req.auth))
         const result = await usersService.userFavorites(req.auth)
         if(result){
             res.status(200).json({
@@ -149,7 +150,7 @@ const userFavorites = async (req,res,next)=>{
 //获取用户游记列表
 const userBlogs = async (req,res,next)=>{
     try {
-        console.log("获取当前用户游记列表: "+ JSON.stringify(req.auth))
+        logger.info('用户游街列表: '+JSON.stringify(req.auth))
         const result = await usersService.userBlogs(req.auth)
         if(result){
             res.status(200).json({
