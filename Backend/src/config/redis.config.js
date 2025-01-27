@@ -24,5 +24,6 @@ async function redisConnection() {
 
 /* 导出 */
 module.exports = {
+    client,
     redisConnection
 }
