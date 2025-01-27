@@ -30,7 +30,7 @@ const checkCeche = async (req,res,next)=>{
 //缓存类
 class Cache {
     //设置缓存
-    async setCache(key,value,ttl= 3600){
+    static async setCache(key,value,ttl= 3600){
         await client.set(key,JSON.stringify(value),{EX: ttl})
         logger.info('Redis:',{
             operating: 'SET',
@@ -40,7 +40,7 @@ class Cache {
         })
     }
     //获取缓存
-    async getCache(key){
+    static async getCache(key){
         const cachedata = await client.get(key)
         logger.info('Redis:',{
             operating: 'GET',
@@ -50,7 +50,7 @@ class Cache {
         return cachedata?JSON.parse(cachedata):null
     }
     //删除缓存
-    async deleteCache(key){
+    static async deleteCache(key){
         await client.del(key)
         logger.info('Redis:',{
             operating: 'DELETE',
@@ -58,7 +58,7 @@ class Cache {
         })
     }
     //清空缓存
-    async clearCache(){
+    static async clearCache(){
         await client.flushAll()
         logger.info('Redis:',{
             operating: 'CLEAN',
