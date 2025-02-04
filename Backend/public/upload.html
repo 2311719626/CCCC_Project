@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picgo Upload</title>
+    <style>
+        /* 页面布局 */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* 表单样式 */
+        form.main {
+            border: 1px solid #ccc;
+            padding: 40px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* 间距调整 */
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* 自定义文件选择样式 */
+        .file-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .custom-file-label {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #666;
+        }
+
+        .custom-file-button {
+            padding: 10px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .custom-file-button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        input[type="submit"] {
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        .modal-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .modal-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Picgo Upload</h1>
+    <form id="uploadForm" class="main" action="http://127.0.0.1:3000/protected/upload" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <label for="category">Enter picture category:</label>
+            <input type="text" id="category" name="category" placeholder="Category" required>
+        </div>
+        <div class="form-row">
+            <label for="tag">Enter picture tag:</label>
+            <input type="text" id="tag" name="tag" placeholder="Tag" required>
+        </div> 
+        <div class="form-row">
+            <label for="file">Select pictures:</label>
+            <div class="file-upload-wrapper">
+                <span class="custom-file-label" id="fileLabel">No files selected</span>
+                <button type="button" class="custom-file-button" onclick="document.getElementById('file').click()">Browse</button>
+                <input type="file" id="file" name="images" multiple onchange="updateFileLabel(this)" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <input type="submit" value="Upload">
+        </div>
+    </form>
+
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage">nothing here!</p>
+            <button class="modal-button" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // 更新文件标签
+        function updateFileLabel(input) {
+            const label = document.getElementById('fileLabel');
+            if (input.files.length > 0) {
+                label.textContent = Array.from(input.files).map(file => file.name).join(', ');
+            } else {
+                label.textContent = "No files selected";
+            }
+        }
+
+        // 刷新清除表单值
+        window.onload = () => {
+            document.getElementById('uploadForm').reset();
+        }
+
+        // 禁用表单 enter 键
+        document.getElementById('uploadForm').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+
+        // 获取提交信息并上传
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 0) {
+                    document.getElementById('uploadForm').reset();
+                    document.getElementById('fileLabel').textContent = "No files selected"; // 清空文件标签
+                }
+                showModal(data.msg);
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                showModal('An error happened!');
+            });
+        });
+
+        // 显示模态框
+        function showModal(message) {
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

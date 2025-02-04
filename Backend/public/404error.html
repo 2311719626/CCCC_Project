@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    }
+
+    .container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    }
+
+    .error-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    }
+
+    .error-code {
+    font-size: 100px;
+    font-weight: bold;
+    color: #e74c3c;
+    animation: fadeIn 1s ease-out;
+    }
+
+    .error-message {
+    font-size: 24px;
+    color: #555;
+    margin-top: 10px;
+    }
+
+    .error-description {
+    font-size: 16px;
+    color: #777;
+    margin-top: 20px;
+    }
+
+    .home-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+    }
+
+    .home-button:hover {
+    background-color: #2980b9;
+    }
+
+    /* Simple Fade-in Animation */
+    @keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+    @media (max-width: 768px) {
+    .error-code {
+        font-size: 80px;
+    }
+
+    .error-message {
+        font-size: 20px;
+    }
+
+    .error-description {
+        font-size: 14px;
+    }
+
+    .home-button {
+        padding: 10px 20px;
+    }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="error-box">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-message">Page not found!</h2>
+      <p class="error-description">
+        Sorry, the page you are looking for might have been moved, deleted, or never existed.
+      </p>
+      <a href="/" class="home-button">Go to Home Page</a>
+    </div>
+  </div>
+
+</body>
+</html>

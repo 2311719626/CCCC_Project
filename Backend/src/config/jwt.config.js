@@ -5,6 +5,9 @@ const {expressjwt: expressJwt} = require('express-jwt')
 const {logger} = require('../utils/log.util.js')
 const JWT_SECRET_KEY='wust_cccc_2025'
 
+//加载环境变量
+require('dotenv').config()
+
 // jwt token 验证
 const jwtVerify = expressJwt({
     secret: process.env.JWT_SECRET_KEY || JWT_SECRET_KEY,
@@ -20,7 +23,8 @@ const jwtVerify = expressJwt({
 }).unless({
     path: [
         '/api/v1/users/register',
-        '/api/v1/users/login'
+        '/api/v1/users/login',
+        '/protected/*'
     ]
 })
 

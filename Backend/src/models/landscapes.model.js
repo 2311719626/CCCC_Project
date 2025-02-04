@@ -14,10 +14,10 @@ const landscapeSchema = new Schema({
   },
   description: {
     type: String,
-    required: true
+    required: false
   },
   location: String,
-  image: String,
+  image: [String],
   related_poems: [{
     title: String,
     author: String,

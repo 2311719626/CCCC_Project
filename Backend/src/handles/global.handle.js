@@ -2,6 +2,8 @@
  * 全局错误处理
  */
 
+const path = require("path");
+
 // 全局异常列表
 const ERROR_MESSAGE = {
     USER: {
@@ -33,11 +35,18 @@ class AppError extends Error {
 // 全局异常处理
 const globalErrorHandle = (err, req, res, next) => {
   if (err instanceof AppError || err instanceof Error) {
-    // 使用抛出异常时的信息和状态码
-    res.status(err.status).json({
-      msg: err.message,
-      data: {},
-    });
+    //捕获到404
+    if(err.status===404){
+      const errorpage = path.join(__dirname,"..","..","public/404error.html")
+      res.status(err.status).sendFile(errorpage)
+    }else{
+      // 使用抛出异常时的信息和状态码
+      res.status(err.status).json({
+        msg: err.message,
+        data: {}
+      });
+    }
+    
   } else {
     // 未知错误，直接返回服务器异常
     res.status(500).json({
