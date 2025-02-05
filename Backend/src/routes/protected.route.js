@@ -8,6 +8,8 @@ const {upload} = require('../middlewares/multer.middleware.js')
   
 //内部主页
 router.get('/',protectedController.getmainpage)
+//登录验证页面
+router.post('/login',protectedController.checklogin)
 //picgo上传页面
 router.get('/upload',protectedController.getuploadpage)
 //picgo上传
