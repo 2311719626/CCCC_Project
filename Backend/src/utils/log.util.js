@@ -35,7 +35,7 @@ const logger = winston.createLogger({
             return `(${timestamp}) [${level}]: ${message}` //日志输出格式
         }) 
     ),
-    exitOnError: true,
+    exitOnError: false,
     transports: [
         new winston.transports.Console(),
         new winston.transports.File({

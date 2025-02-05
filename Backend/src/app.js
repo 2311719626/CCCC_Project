@@ -6,7 +6,8 @@
 const express = require("express");
 const env = require("dotenv");
 const jwtConfig = require('./config/jwt.config.js'); 
-const cors = require('cors')
+const cors = require('cors');
+const {logsCleanUpTask} = require('./tasks/logsclean.js');
 // 导入路由
 const protectedRouter = require("./routes/protected.route.js");
 const usersRouter = require("./routes/users.route.js");
@@ -24,6 +25,9 @@ env.config();
 logger.info('dotenv: loaded');
 const app = express();
 
+//加载定时任务
+logsCleanUpTask();
+
 /* 中间件 */
 // 解析json数据
 app.use(
@@ -37,7 +41,12 @@ app.use(jwtConfig.jwtVerify);
 app.use(jwtConfig.jwtHandle);
 logger.info('jwt: loaded');
 // 加载跨域请求操作
-app.use(cors())
+app.use(cors({
+  origin: "*",
+  methods: ['GET','POST','DELETE','PUT','PATCH'],
+  allowedHeaders: ['Content-Type','token','Authorization']
+}))
+logger.info("CROS: loaded")
 
 // 加载路由
 app.use('/api/v1/users',usersRouter);

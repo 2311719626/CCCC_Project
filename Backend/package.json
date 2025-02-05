@@ -19,7 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
-    "node-cron": "^3.0.3",
+    "node-schedule": "^2.1.1",
     "redis": "^4.7.0",
     "winston": "^3.17.0"
   },
