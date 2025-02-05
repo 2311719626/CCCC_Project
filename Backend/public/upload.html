@@ -4,37 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picgo Upload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        /* 通用样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         /* 页面布局 */
         body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3498db, #2ecc71, #f39c12);
+            color: #333;
+            line-height: 1.6;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-            font-family: Arial, sans-serif;
+            padding: 20px;
         }
 
         h1 {
+            font-size: 2.5rem;
+            color: #fff;
             margin-bottom: 20px;
-            font-size: 24px;
             text-align: center;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* 表单样式 */
         form.main {
-            border: 1px solid #ccc;
-            padding: 40px;
-            border-radius: 8px;
             background-color: #fff;
-            box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             gap: 20px; /* 间距调整 */
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
         }
 
         .form-row {
@@ -44,66 +55,66 @@
 
         label {
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
         }
 
-        input[type="text"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        input[type="text"], input[type="file"] {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             width: 100%;
-        }
-
-        /* 自定义文件选择样式 */
-        .file-upload-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-        }
-
-        .custom-file-label {
-            padding: 10px;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            flex-grow: 1;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            color: #666;
-        }
-
-        .custom-file-button {
-            padding: 10px 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-
-        .custom-file-button:hover {
-            background-color: #0056b3;
+            font-size: 1rem;
         }
 
         input[type="file"] {
             display: none;
         }
 
-        input[type="submit"] {
+        /* 自定义文件选择样式 */
+        .file-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .custom-file-label {
             padding: 12px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .custom-file-button {
+            padding: 12px 20px;
             background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.2s;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .custom-file-button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="submit"] {
+            padding: 14px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
@@ -127,51 +138,54 @@
         .modal-content {
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 300px;
         }
 
         .modal-button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
         }
 
         .modal-button:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
 <body>
-    <h1>Picgo Upload</h1>
-    <form id="uploadForm" class="main" action="http://127.0.0.1:3000/protected/upload" method="post" enctype="multipart/form-data">
-        <div class="form-row">
-            <label for="category">Enter picture category:</label>
-            <input type="text" id="category" name="category" placeholder="Category" required>
-        </div>
-        <div class="form-row">
-            <label for="tag">Enter picture tag:</label>
-            <input type="text" id="tag" name="tag" placeholder="Tag" required>
-        </div> 
-        <div class="form-row">
-            <label for="file">Select pictures:</label>
-            <div class="file-upload-wrapper">
-                <span class="custom-file-label" id="fileLabel">No files selected</span>
-                <button type="button" class="custom-file-button" onclick="document.getElementById('file').click()">Browse</button>
-                <input type="file" id="file" name="images" multiple onchange="updateFileLabel(this)" required>
+    <div>
+        <h1>Picgo Upload</h1>
+        <form id="uploadForm" class="main" action="http://127.0.0.1:3000/protected/upload" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <label for="category">Enter picture category:</label>
+                <input type="text" id="category" name="category" placeholder="Category" required>
             </div>
-        </div>
-        <div class="form-row">
-            <input type="submit" value="Upload">
-        </div>
-    </form>
+            <div class="form-row">
+                <label for="tag">Enter picture tag:</label>
+                <input type="text" id="tag" name="tag" placeholder="Tag" required>
+            </div>
+            <div class="form-row">
+                <label for="file">Select pictures:</label>
+                <div class="file-upload-wrapper">
+                    <span class="custom-file-label" id="fileLabel">No files selected</span>
+                    <button type="button" class="custom-file-button" onclick="document.getElementById('file').click()">Browse</button>
+                    <input type="file" id="file" name="images" multiple onchange="updateFileLabel(this)" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Upload">
+            </div>
+        </form>
+    </div>
 
     <!-- 模态框 -->
     <div id="myModal" class="modal">
