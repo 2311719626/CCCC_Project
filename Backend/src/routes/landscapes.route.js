@@ -5,10 +5,6 @@
 const express = require("express");
 const router = express.Router();
 const landscapesController = require("../controllers/landscapes.controller");
-const authMiddleware = require("../middlewares/auth.middleware");
-
-// 所有路由都需要token验证中间件
-router.use(authMiddleware);
 
 // 路由定义
 // GET /api/v1/landscapes - 获取山水列表

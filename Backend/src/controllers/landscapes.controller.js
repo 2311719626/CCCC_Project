@@ -41,7 +41,7 @@ exports.getCategories = async (req, res, next) => {
 exports.favorLandscape = async (req, res, next) => {
   try {
     const data = await landscapeService.favorLandscape(
-      req.user.id,
+      req.auth.id, // 修改这里
       req.params.landscape_id
     );
     res.json(ResponseUtil.success(data, "收藏成功"));
@@ -54,7 +54,7 @@ exports.favorLandscape = async (req, res, next) => {
 exports.unfavorLandscape = async (req, res, next) => {
   try {
     const data = await landscapeService.unfavorLandscape(
-      req.user.id,
+      req.auth.id, // 修改这里
       req.params.landscape_id
     );
     res.json(ResponseUtil.success(data, "取消收藏成功"));

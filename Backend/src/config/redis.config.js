@@ -4,6 +4,7 @@
 
 /* 导入 */
 const redis = require('redis')
+const {logger} = require('../utils/log.util.js')
 
 /* redis配置，创建redis客户端 */
 const client = redis.createClient({
@@ -15,13 +16,14 @@ const client = redis.createClient({
 async function redisConnection() {
     try {
         await client.connect()
-        console.log("Redis connected...")
+        logger.info("Redis: the connection is successful")
     } catch (err) {
-        console.error("Redis error:\n",err)
+        logger.error("Redis:",err)
     }
 }
 
 /* 导出 */
 module.exports = {
+    client,
     redisConnection
 }

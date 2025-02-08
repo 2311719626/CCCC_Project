@@ -1,5 +1,4 @@
-const db = require("../models");
-const Poem = db.poem;
+const { Poem } = require("../models/poems.model");
 
 /**
  * 古诗词服务类
@@ -11,9 +10,7 @@ class PoemService {
    * @returns {Promise<Array>} 返回古诗词数组，包含id、标题、内容、作者和朝代信息
    */
   async getPoems() {
-    const poems = await Poem.findAll({
-      attributes: ["id", "title", "content", "author", "dynasty"],
-    });
+    const poems = await Poem.find({}, "title content author dynasty");s
     return poems;
   }
 }

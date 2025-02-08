@@ -2,25 +2,40 @@
  * jwt token验证相关配置
  */
 const {expressjwt: expressJwt} = require('express-jwt')
-const JWT_SECRET_KEY = 'wust_cccc_2025'
+const {logger} = require('../utils/log.util.js')
+const JWT_SECRET_KEY='wust_cccc_2025'
+
+//加载环境变量
+require('dotenv').config()
 
 // jwt token 验证
 const jwtVerify = expressJwt({
-    secret: JWT_SECRET_KEY,
-    algorithms: ['RS256'],
+    secret: process.env.JWT_SECRET_KEY || JWT_SECRET_KEY,
+    algorithms: ['HS256'],
     credentialsRequired: false,
-    requestProperty: 'auth'
+    requestProperty: 'auth',
+    getToken: (req)=>{
+        if(req.headers.token){
+            return req.headers.token
+        }
+        return null
+    }
 }).unless({
     path: [
         '/api/v1/users/register',
-        '/api/v1/users/login'
+        '/api/v1/users/login',
+        '/protected/*'
     ]
 })
 
 // jwt验证失败处理
 const jwtHandle = (err,req,res,next)=>{
     if(err.name === 'UnauthorizedError'){
-        res.status(401).send('无效token')
+        logger.error("jsonwebtoken:",err)
+        res.status(401).send({
+            msg: '无效token',
+            data: {}
+        })
     }else{
         next(err)
     }

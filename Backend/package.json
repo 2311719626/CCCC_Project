@@ -11,17 +11,24 @@
   "author": "wenjun xie && renzheng qi",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-jwt": "^8.5.1",
+    "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
-    "redis": "^4.7.0"
+    "node-schedule": "^2.1.1",
+    "redis": "^4.7.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.10.7",
-    "nodemon": "^3.1.9"
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.9",
+    "picgo": "^1.5.8"
   }
 }

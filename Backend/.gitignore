@@ -1,2 +1,8 @@
 node_modules
 package-lock.json
+logs
+misc
+i18n-cli
+src/config/i18n-cli
+picgo.log
+src/config/picgo.log
