@@ -1,0 +1,13 @@
+{
+    "picBed": {
+        "uploader": "github",
+        "github": {
+            "repo": "2311719626/CCCC_Pic",
+            "token": "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",
+            "path": "img/",
+            "customUrl": "",
+            "branch": "main"
+        }
+    },
+    "picgoPlugins": {}
+}

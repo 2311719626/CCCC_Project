@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #3498db, #2ecc71, #f1c40f);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .error-box {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px);
+      animation: slideIn 1s ease-out forwards;
+    }
+
+    .error-code {
+      font-size: 150px;
+      font-weight: 500;
+      color: #e74c3c;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .error-message {
+      font-size: 26px;
+      color: #333;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .error-description {
+      font-size: 18px;
+      color: #555;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    .home-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 30px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #2980b9;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Slide-in Animation */
+    @keyframes slideIn {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Fade-in Animation for the error code */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 100px;
+      }
+
+      .error-message {
+        font-size: 22px;
+      }
+
+      .error-description {
+        font-size: 16px;
+      }
+
+      .home-button {
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="error-box">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-message">Page not found!</h2>
+      <p class="error-description">
+        The page you're looking for might have been moved, deleted, or never existed.
+      </p>
+      <a href="/" class="home-button">Go to Home Page</a>
+    </div>
+  </div>
+
+</body>
+</html>
