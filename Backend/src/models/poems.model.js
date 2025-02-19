@@ -9,7 +9,7 @@ const poemSchema = new Schema({
   author: String,
   dynasty: String,
   content: {
-    type: String,
+    type: [String], // 修改为字符串数组类型
     required: true,
   },
   landscapes: [

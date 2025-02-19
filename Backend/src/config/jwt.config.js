@@ -29,7 +29,12 @@ const jwtVerify = expressJwt({
     return null;
   },
 }).unless({
-  path: ["/api/v1/users/register", "/api/v1/users/login", "/protected/*"],
+  path: [
+    "/api/v1/users/register",
+    "/api/v1/users/login",
+    "/protected/*",
+    "/api/v1/poems", // 添加古诗词获取接口到白名单
+  ],
 });
 
 // jwt验证失败处理
