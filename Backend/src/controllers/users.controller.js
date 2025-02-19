@@ -154,7 +154,7 @@ const userFavorites = async (req, res, next) => {
 //获取用户游记列表
 const userBlogs = async (req, res, next) => {
   try {
-    logger.info("用户游街列表: " + JSON.stringify(req.auth));
+    logger.info("用户游记列表: " + JSON.stringify(req.auth));
     const result = await usersService.userBlogs(req.auth);
     if (result) {
       res.status(200).json({

@@ -163,28 +163,26 @@ exports.userFavorites = async (currentuser) => {
   }
 };
 
-/* 获取用户邮寄列表 */
+/* 获取用户游记列表 */
 exports.userBlogs = async (currentuser) => {
   try {
-    const blogs_origin = await User.find({
+    // 首先查找用户
+    const user = await User.findOne({
       username: currentuser.username,
       email: currentuser.email,
     });
-    const blogs_list = blogs_origin.map(async (blog__id) => {
-      const blogs = await Blog.findById(blog__id);
-      return {
-        user_id: blogs.user_id,
-        landscape_id: blogs.landscape_id,
-        title: blogs.title,
-        summary: blogs.summary,
-        content: blogs.content,
-        created_time: blogs.created_time,
-        updated_time: blogs.updated_time,
-      };
-    });
-    if (blogs_list) {
-      return blogs_list;
+
+    if (!user) {
+      throw new handle.AppError(handle.ERROR_MESSAGE.USER.USER_NOT_EXIST, 400);
     }
+
+    // 直接查询该用户的所有博客
+    const blogs = await Blog.find({ user_id: user._id })
+      .sort({ created_time: -1 })
+      .populate("landscape_id", "name description images") // 关联查询景点信息
+      .lean(); // 转换为普通JS对象
+
+    return blogs;
   } catch (err) {
     throw new handle.AppError(handle.ERROR_MESSAGE.USER.BLOGS_GET_FAIELD, 500);
   }
