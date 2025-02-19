@@ -34,7 +34,19 @@ class LandscapeService {
     const total = await Landscape.countDocuments(filter);
     const items = await Landscape.find(filter)
       .skip((page - 1) * per_page)
-      .limit(parseInt(per_page));
+      .limit(parseInt(per_page))
+      .lean(); // 使用 lean() 获取纯 JavaScript 对象
+
+    // 处理 related_poems 字段
+    items.forEach((item) => {
+      if (typeof item.related_poems === "string") {
+        try {
+          item.related_poems = JSON.parse(item.related_poems);
+        } catch (e) {
+          item.related_poems = [];
+        }
+      }
+    });
 
     // 返回分页结果
     return {
@@ -47,7 +59,18 @@ class LandscapeService {
 
   // 根据ID获取单个山水详情
   async getLandscapeById(id) {
-    return await this.findLandscapeOrThrow(id);
+    const landscape = await this.findLandscapeOrThrow(id);
+    const result = landscape.toObject();
+
+    if (typeof result.related_poems === "string") {
+      try {
+        result.related_poems = JSON.parse(result.related_poems);
+      } catch (e) {
+        result.related_poems = [];
+      }
+    }
+
+    return result;
   }
 
   // 获取所有分类列表
