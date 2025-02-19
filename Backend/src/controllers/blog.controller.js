@@ -5,7 +5,7 @@ exports.createBlog = async (req, res, next) => {
   try {
     const blogData = {
       ...req.body,
-      user_id: req.user.id,
+      user_id: req.auth.id,
     };
     const data = await blogService.createBlog(blogData);
     res.json(ResponseUtil.success(data, "发布成功"));
