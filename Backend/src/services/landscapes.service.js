@@ -59,23 +59,30 @@ class LandscapeService {
 
   // 根据ID获取单个山水详情
   async getLandscapeById(id) {
-    const landscape = await this.findLandscapeOrThrow(id);
-    const result = landscape.toObject();
+    const landscape = await Landscape.findById(id).lean();
+    if (!landscape) {
+      const error = new Error("山水不存在");
+      error.name = "NotFoundError";
+      throw error;
+    }
 
-    if (typeof result.related_poems === "string") {
+    // 处理 related_poems 字段
+    if (typeof landscape.related_poems === "string") {
       try {
-        result.related_poems = JSON.parse(result.related_poems);
+        landscape.related_poems = JSON.parse(landscape.related_poems);
       } catch (e) {
-        result.related_poems = [];
+        landscape.related_poems = [];
       }
     }
 
-    return result;
+    return landscape;
   }
 
   // 获取所有分类列表
   async getCategories() {
-    return await Landscape.distinct("category");
+    // 从 Schema 中获取预定义的分类枚举值
+    const categories = Landscape.schema.path("category").enumValues;
+    return categories;
   }
 
   // 收藏指定山水
