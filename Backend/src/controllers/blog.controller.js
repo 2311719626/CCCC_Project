@@ -25,7 +25,7 @@ exports.getBlogs = async (req, res, next) => {
 
 exports.deleteBlog = async (req, res, next) => {
   try {
-    const data = await blogService.deleteBlog(req.params.blog_id, req.user.id);
+    const data = await blogService.deleteBlog(req.params.blog_id, req.auth.id);
     res.json(ResponseUtil.success(data, "删除成功"));
   } catch (err) {
     next(err);
