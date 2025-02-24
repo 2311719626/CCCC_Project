@@ -82,3 +82,88 @@ In compliance with the open source license, this code can be used in various sce
 [![CCCC_Pic](https://img.shields.io/badge/GitHub-CCCC__Pic-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/2311719626/CCCC_Pic)
 
 > Implement an image bed in combination with PicGo.
+
+---
+
+## Code Reading Guide
+
+### Backend Core Code
+
+> Backend\src
+
+```
+Backend/
+├── .env                # 环境配置
+├── .gitignore          # Git忽略规则
+├── package.json        # 依赖配置
+├── src/                # 核心代码
+│   ├── config/         # 系统配置
+│   ├── controllers/    # 业务控制器
+│   ├── middlewares/    # 中间件
+│   ├── models/         # 数据模型
+│   ├── routes/         # API路由
+│   ├── services/       # 业务服务
+│   ├── utils/          # 工具类
+│   └── server.js       # 服务入口
+├── public/             # 静态资源
+└── tests/              # 测试用例
+```
+
+```mermaid
+%% 后端核心架构全景图
+graph TD
+classDef entry fill:#90EE90,stroke:#333;
+classDef core fill:#87CEEB,stroke:#333;
+classDef support fill:#FFA07A,stroke:#333;
+classDef data fill:#FFB6C1,stroke:#333;
+classDef task fill:#DDA0DD,stroke:#333;
+classDef config fill:#778899,stroke:#333;
+
+subgraph 入口层
+    server.js[[server.js]]:::entry --> app.js[[app.js]]:::entry
+end
+
+subgraph 核心层
+    app.js --> Routes
+    Routes --> blog.route.js:::core
+    Routes --> users.route.js:::core
+    Routes --> poem.route.js:::core
+    
+    blog.route.js --> blog.controller.js:::core
+    blog.controller.js --> blog.service.js:::core
+    blog.service.js --> blog.model.js:::data
+end
+
+subgraph 支持模块
+    app.js --> middlewares:::support
+    middlewares --> jwt.middleware.js:::support
+    middlewares --> multer.middleware.js:::support
+    middlewares --> validators:::support
+    
+    app.js --> utils:::support
+    utils --> log.util.js:::support
+    utils --> cache.util.js:::support
+    utils --> response.util.js:::support
+end
+
+subgraph 数据层
+    blog.model.js --> MongoDB:::data
+    redis.config.js:::config --> Redis:::data
+end
+
+subgraph 定时任务
+    app.js --> logsclean.js:::task
+    logsclean.js --> winston-logger:::support
+end
+
+subgraph 配置层
+    server.js --> db.config.js:::config
+    server.js --> redis.config.js:::config
+    app.js --> jwt.config.js:::config
+end
+
+blog.route.js -.-> validators/blog.validator.js
+blog.service.js -.-> cache.util.js
+log.util.js -.-> winston-logger
+jwt.middleware.js -.-> jwt.config.js
+```
