@@ -1,0 +1,19 @@
+ <div className="main">
+         <div className="all_container">
+        <div className="profile">
+            <h2>泰山</h2>
+            <p>这有关于产品、设计、开发相关的问题和看法，还有生活和分享。</p>
+            
+        </div>
+        <div className="list">
+            <h3>基本资料</h3>
+            <p></p>
+            <h3>历史沿革</h3>
+            <p></p>
+             <h3>特色文旅</h3>
+             <p></p>
+<h3>旅游线路</h3>
+        </div>
+    </div>
+      </div>
+    
